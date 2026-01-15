@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.app.taskmanager.ui.controller.MainController">
+    <top>
+        <VBox spacing="12" styleClass="header-container">
+            <Label text="Gestionnaire de Tâches - Préparation Examens" styleClass="header-title"/>
+            <HBox spacing="10" alignment="CENTER_LEFT" padding="0 0 5 0">
+                <TextField fx:id="searchField" promptText="Rechercher tâche..." HBox.hgrow="ALWAYS"/>
+                <Button fx:id="addButton" text="+ Ajouter" onAction="#handleAdd" styleClass="primary-button"/>
+            </HBox>
+            <HBox spacing="8" styleClass="filter-row">
+                <ToggleButton fx:id="filterAllButton" text="Toutes" styleClass="filter-button"/>
+                <ToggleButton fx:id="filterPendingButton" text="En attente" styleClass="filter-button"/>
+                <ToggleButton fx:id="filterInProgressButton" text="En cours" styleClass="filter-button"/>
+                <ToggleButton fx:id="filterValidatedButton" text="Validées" styleClass="filter-button"/>
+                <ToggleButton fx:id="filterCanceledButton" text="Annulées" styleClass="filter-button"/>
+            </HBox>
+        </VBox>
+    </top>
+    <center>
+        <VBox spacing="12" padding="15">
+            <TableView fx:id="tasksTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" prefWidth="60"/>
+                    <TableColumn fx:id="titleColumn" text="Titre" prefWidth="200"/>
+                    <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="320"/>
+                    <TableColumn fx:id="statusColumn" text="Statut" prefWidth="140"/>
+                    <TableColumn fx:id="createdColumn" text="Créée le" prefWidth="150"/>
+                </columns>
+            </TableView>
+            <HBox spacing="12" alignment="CENTER" styleClass="action-row">
+                <Button fx:id="markInProgressButton" text="Marquer En Cours" onAction="#handleMarkInProgress" styleClass="info-button"/>
+                <Button fx:id="validateButton" text="Valider" onAction="#handleValidate" styleClass="success-button"/>
+                <Button fx:id="cancelButton" text="Annuler" onAction="#handleCancel" styleClass="warning-button"/>
+                <Button fx:id="deleteButton" text="Supprimer" onAction="#handleDelete" styleClass="danger-button"/>
+            </HBox>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox styleClass="footer" alignment="CENTER" padding="10">
+            <Label fx:id="statsLabel" text="Total 0 | En attente 0 | En cours 0 | Validées 0 | Annulées 0"/>
+        </HBox>
+    </bottom>
+</BorderPane>
